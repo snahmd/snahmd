@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n staticfiles %}
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+
+{% compress css %}
+
+<!-- Bootstrap core CSS -->
+<!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+<link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Custom styles for this template -->
+<link href="{% static "css/clean-blog.min.css" %}" rel="stylesheet">
+<link href="{% static "css/custom.css" %}" rel="stylesheet">
+
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/bootstrap-rtl.css" %}">
+{% endif %}
+{% ifinstalled cartridge.shop %}
+<link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+{% endif %}
+{% endifinstalled %}
+{% block extra_css %}{% endblock %}
+{% endcompress %}
+
+{% compress js %}
+<script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+
+
+{% block extra_js %}{% endblock %}
+{% endcompress %}
+
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<script src="{% static "js/respond.min.js" %}"></script>
+<![endif]-->
+
+{% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}body{% endblock %}">
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            {% block navbar_title %}
+            {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
+            {% if settings.SITE_TAGLINE %}<p class="navbar-text d-none">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+            {% endblock%}
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            {% page_menu "pages/menus/primary.html" %}
+          </div>
+        </div>
+    </nav>    
+
+
+{% block pageheader %}{% endblock %}  
+
+{% block blockposthero %}{% endblock %} 
+
+{% if request.path == '/' or '/blog/archive/' in request.path or '/blog/category/' in request.path %}
+
+<header class="masthead" style="{% if request.path == '/' %}background-image: url('{{ MEDIA_URL }}{% thumbnail page.hero_image 1900 1069%}'){% else %}background-image: url('{{ STATIC_URL }}img/home-bg.jpg'){% endif %}">
+  
+
+    <div class="overlay"></div>
+    <div id="particles-js" style="position: absolute; width: 100%; height: 100%; background: $background"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        
+          <div class="site-heading">
+            {% editable page.hero_title page.hero_subtitle %}
+            <h1>{{ page.hero_title }}</h1>
+            <h2>
+            <a style= "color:#fff !important; text-decoration:none !important;" href="" class="typewrite" data-period="2000" data-type='[ "Web Developer", "Data Analyst", "UX Resarcher", "Neuromarketing Resarcher" ]'>
+              <span class="wrap"></span>
+            </a>
+            </h2>
+            <span class="subheading">{{ page.hero_subtitle }}</span>
+            {% endeditable %}
+          </div>
+        
+        </div>
+      </div>
+    </div>
+</header>
+
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% block main %}{% endblock %}
+        </div>
+        
+    </div>
+    
+</div>
+<hr>
+
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://www.twitter.com/snahmd/">
+                <span class="fa-stack fa-lg">
+                  <i class="fab fa-twitter fa-stack-2x fa-inverse" style="font-size:50px;background: #00acee;
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/snahmd/">
+                <span class="fa-stack fa-lg">
+                  <i class="fab fa-facebook-f fa-stack-2x fa-inverse" style="font-size:50px;background: #3b5998;
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/snahmd/">
+                <span class="fa-stack fa-lg">
+                  <i class="fab fa-instagram fa-stack-2x fa-inverse" style="font-size:50px;background: #d6249f;
+                  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;">
+                  </i>
+                </span>
+              </a>
+            </li>
+            
+            
+            <li class="list-inline-item">
+              <a href="https://www.github.com/snahmd/">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-2x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; snahmd.com 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+{% block footer_js %}
+
+ <!-- Bootstrap core JavaScript -->
+
+<script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+ <!-- Custom scripts for this template -->
+<script src="{% static "js/clean-blog.min.js" %}"></script>
+<script src="{% static "js/retina.js" %}"></script>
+<script src="{% static "js/particles.js" %}"></script>
+<script src="{% static "js/particlesEdit.js" %}"></script>
+
+<script>
+  var TxtType = function(el, toRotate, period) {
+    this.toRotate = toRotate;
+    this.el = el;
+    this.loopNum = 0;
+    this.period = parseInt(period, 10) || 2000;
+    this.txt = '';
+    this.tick();
+    this.isDeleting = false;
+};
+
+TxtType.prototype.tick = function() {
+    var i = this.loopNum % this.toRotate.length;
+    var fullTxt = this.toRotate[i];
+
+    if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
+
+    this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+    var that = this;
+    var delta = 200 - Math.random() * 100;
+
+    if (this.isDeleting) { delta /= 2; }
+
+    if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+    }
+
+    setTimeout(function() {
+    that.tick();
+    }, delta);
+};
+
+window.onload = function() {
+    var elements = document.getElementsByClassName('typewrite');
+    for (var i=0; i<elements.length; i++) {
+        var toRotate = elements[i].getAttribute('data-type');
+        var period = elements[i].getAttribute('data-period');
+        if (toRotate) {
+          new TxtType(elements[i], JSON.parse(toRotate), period);
+        }
+    }
+    // INJECT CSS
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+    document.body.appendChild(css);
+};
+</script>
+
+{% include "includes/footer_scripts.html" %}
+{% endblock %}
+
+</body>
+</html>
