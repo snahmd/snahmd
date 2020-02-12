@@ -56,6 +56,28 @@
                 {% endif %}
                 {% endif %}
             </p>
+            <div class="post-preview">
+                <p class="post-meta" style="color:white!important;">
+                  {% trans "Posted by" %}:
+                  {% with blog_post.user as author %}
+                  <a style="color:white!important;" href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+                  {% endwith %}
+                  {% blocktrans with sometime=blog_post.publish_date %}{{ sometime }}{% endblocktrans %}
+                  {% if blog_post.allow_comments %}
+                  /
+                  {% if settings.COMMENTS_DISQUS_SHORTNAME %}
+                  <a href="{{ blog_post.get_absolute_url }}#disqus_thread"
+                      data-disqus-identifier="{% disqus_id_for blog_post %}">
+                      {% trans "Comments" %}
+                  </a>
+                  {% else %}
+                  <a style="color:#fff!important;" href="{{ blog_post.get_absolute_url }}#comments">
+                      {% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
+                  </a>
+                  {% endif %}
+                  {% endif %}
+              </p>
+            </div>
           </div>
         </div>
       </div>

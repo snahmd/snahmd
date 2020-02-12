@@ -1,7 +1,7 @@
 {% load i18n mezzanine_tags comment_tags %}
 
 <div id="comments">
-<div class="container" style="outline-style:ridge;outline-color:#28657b;">    
+<div class="container">    
 <h3>{% trans "Comments" %}</h3>
 {% if settings.COMMENTS_DISQUS_SHORTNAME %}
 {% include "generic/includes/disqus_comments.html" %}
