@@ -82,7 +82,7 @@
 
 {% block blockposthero %}{% endblock %} 
 
-{% if request.path == '/' or '/blog/archive/' in request.path or '/blog/category/' in request.path %}
+{% if request.path == '/' %}
 
 <header class="masthead" style="{% if request.path == '/' %}background-image: url('{{ MEDIA_URL }}{% thumbnail page.hero_image 1900 1069%}'){% else %}background-image: url('{{ STATIC_URL }}img/home-bg.jpg'){% endif %}">
   
@@ -103,6 +103,86 @@
             </h2>
             <span class="subheading">{{ page.hero_subtitle }}</span>
             {% endeditable %}
+          </div>
+        
+        </div>
+      </div>
+    </div>
+</header>
+{% elif '/blog/tag/' in request.path %}
+<header class="masthead" style="{% if '/blog/tag/' in request.path %}background-image: url('{{ STATIC_URL }}img/tags.jpeg'){% endif %}">
+  
+
+  <div class="overlay"></div>
+  <div id="particles-js" style="position: absolute; width: 100%; height: 100%; background: $background"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      
+        <div class="site-heading">
+          
+          <h1>#{{ tag }}</h1>
+          
+          
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</header>
+
+
+{% elif '/blog/category/' in request.path  %}
+<header class="masthead" style="{% if '/blog/category/' in request.path %}background-image: url('{{ STATIC_URL }}img/category.jpg'){% endif %}">
+  
+
+  <div class="overlay"></div>
+  <div id="particles-js" style="position: absolute; width: 100%; height: 100%; background: $background"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      
+        <div class="site-heading">
+          <h1 class=text-center><span class="type-it wrap" > #{{ category }}</span> </h1>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</header>
+{% elif '/blog/archive/' in request.path %}
+<header class="masthead" style="{% if '/blog/archive/' in request.path %}background-image: url('{{ STATIC_URL }}img/archive.jpeg'){% endif %}">
+  
+
+  <div class="overlay"></div>
+  <div id="particles-js" style="position: absolute; width: 100%; height: 100%; background: $background"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      
+        <div class="site-heading">
+          <h1 class=text-center><span class="type-it wrap" > |{% if month %}{{ month }}, {% endif %}
+            {{ year }}</span> </h1>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</header>
+{% elif '/blog/author/' in request.path %}
+
+<header class="masthead" style="{% if '/blog/author/' in request.path %}background-image: url('{{ STATIC_URL }}img/author.jpeg'){% endif %}">
+  
+
+    <div class="overlay"></div>
+    <div id="particles-js" style="position: absolute; width: 100%; height: 100%; background: $background"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        
+          <div class="site-heading">
+            <h1 class=text-center><span class="type-it wrap" > |{{ author }}</span> </h1>
+            <h1 class="text-center"> Posts: </h1>
           </div>
         
         </div>
@@ -257,6 +337,14 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
 };
+</script>
+<script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.type-it').typeIt({
+     
+   });
+  });
 </script>
 
 {% include "includes/footer_scripts.html" %}

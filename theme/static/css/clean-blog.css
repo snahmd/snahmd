@@ -296,7 +296,7 @@ header.masthead .post-heading .meta a {
 
 .post-preview > .post-meta > a {
   text-decoration: none;
-  color: #fff;
+  color: black;
 }
 
 .post-preview > .post-meta > a:focus, .post-preview > .post-meta > a:hover {

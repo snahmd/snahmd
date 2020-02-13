@@ -39,25 +39,10 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
             <h1>{{ blog_post.title }}</h1>
-            <p class="meta">
-                {% trans "Posted by" %}:
-                {% with blog_post.user as author %}
-                <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
-                {% endwith %}
-                {% blocktrans with sometime=blog_post.publish_date %}{{ sometime }}{% endblocktrans %} / {% if blog_post.allow_comments %}
-                {% if settings.COMMENTS_DISQUS_SHORTNAME %}
-                    (<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
-                        data-disqus-identifier="{% disqus_id_for blog_post %}">{% spaceless %}
-                        {% trans "Comments" %}
-                    {% endspaceless %}</a>)
-                {% else %}(<a href="#comments">{% spaceless %}
-                    {% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
-                    {% endspaceless %}</a>)
-                {% endif %}
-                {% endif %}
-            </p>
+            
+            
             <div class="post-preview">
-                <p class="post-meta" style="color:white!important;">
+                <p class="post-metax" style="color:white!important;">
                   {% trans "Posted by" %}:
                   {% with blog_post.user as author %}
                   <a style="color:white!important;" href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
@@ -71,7 +56,7 @@
                       {% trans "Comments" %}
                   </a>
                   {% else %}
-                  <a style="color:#fff!important;" href="{{ blog_post.get_absolute_url }}#comments">
+                  <a style="color:white!important;" href="{{ blog_post.get_absolute_url }}#comments">
                       {% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
                   </a>
                   {% endif %}
@@ -107,11 +92,13 @@
 {% keywords_for blog_post as tags %}
 {% if tags %}
 {% spaceless %}
-<ul class="list-inline tags">
-    <li>{% trans "Tags" %}:</li>
-    {% for tag in tags %}
-    <li><a href="{% url "blog_post_list_tag" tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}</li>
-    {% endfor %}
+
+
+<h2 style="text-align: center;">{% trans "Tags" %}:</h2>
+<ul class="tags" style="text-align: center;">
+  {% for tag in tags %}
+  <li><a class="tag" href="{% url "blog_post_list_tag" tag.slug %}">{{ tag }}</a>{% if not forloop.last %} {% endif %}</li>
+  {% endfor %}
 </ul>
 {% endspaceless %}
 {% endif %}
@@ -129,22 +116,29 @@
 {% endblock %}
 </div>
 
+<div class="container mt-5">
+  {% block blog_post_detail_comments %}
+  {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
+  {% endblock %}
+</div>
 
-<div class="container my-5">
+
+<div class="container mt-5" style="text-align: center;">
 {% block blog_post_previous_next %}
 
 <ul class="pager" style="list-style: none;">
+<h3>{% trans 'Previous & Next Posts' %}</h3>  
 {% with blog_post.get_previous_by_publish_date as previous %}
 {% if previous %}
 <li class="previous">
-    <a class="btn btn-outline-info float-left" href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
+    <a class="btn btn-outline-info " href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
 </li>
 {% endif %}
 {% endwith %}
 {% with blog_post.get_next_by_publish_date as next %}
 {% if next %}
-<li class="next">
-    <a class="btn btn-outline-info float-right" href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
+<li class="next mt-3">
+    <a class="btn btn-outline-info " href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
 </li>
 {% endif %}
 {% endwith %}
@@ -154,14 +148,16 @@
 {% endblock %}
 </div>
 
-<div class="container my-5">
+<div class="container">
 {% block blog_post_detail_related_posts %}
 {% if related_posts %}
 <div id="related-posts">
-<h3>{% trans 'Related posts' %}</h3>
-<ul class="list-unstyled">
+<h3 style="text-align: center;">{% trans 'Related Posts' %}</h3>
+<ul class="list-unstyled ">
 {% for post in related_posts %}
-     <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+
+     <li><a class="btn btn-outline-info d-flex justify-content-center mb-3" href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+    
 {% endfor %}
 </ul>
 </div>
@@ -169,10 +165,6 @@
 {% endblock %}
 </div>
 
-<div class="container mt-5">
-{% block blog_post_detail_comments %}
-{% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
-{% endblock %}
-</div>
+
 
 {% endblock %}
