@@ -92,9 +92,10 @@
 {% keywords_for blog_post as tags %}
 {% if tags %}
 {% spaceless %}
+<hr>
 
 
-<h2 style="text-align: center;">{% trans "Tags" %}:</h2>
+<h3 style="text-align: center;">{% trans "Tags" %}</h3>
 <ul class="tags" style="text-align: center;">
   {% for tag in tags %}
   <li><a class="tag" href="{% url "blog_post_list_tag" tag.slug %}">{{ tag }}</a>{% if not forloop.last %} {% endif %}</li>
@@ -108,11 +109,12 @@
 <div class="container " style="text-align: center;">
 {% block blog_post_detail_sharebuttons %}
 {% set_short_url_for blog_post %}
-
+    <h3 style="text-align: center;">{% trans "Share" %}</h3>
     <a class="btn btn-sm ml-2 share-twitter text-white border-light mt-3" style="background-color: #00ACEE;" target="_blank" href="https://twitter.com/intent/tweet?url={{ blog_post.short_url|urlencode }}&amp;text={{ blog_post.title|urlencode }}"><i class="fa fa-twitter"></i>{% trans " | Share on Twitter" %}</a>
     <a class="btn btn-sm ml-2 share-facebook text-white border-light mt-3" style="background-color: #567EB5;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"><i class="fa fa-facebook"></i>{% trans " | Share on Facebook" %}</a>
 
 <br/>
+<hr>
 {% endblock %}
 </div>
 
@@ -120,10 +122,11 @@
   {% block blog_post_detail_comments %}
   {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
   {% endblock %}
+  <hr> 
 </div>
 
 
-<div class="container mt-5" style="text-align: center;">
+<div class="container mt-3" style="text-align: center;">
 {% block blog_post_previous_next %}
 
 <ul class="pager" style="list-style: none;">
@@ -143,8 +146,8 @@
 {% endif %}
 {% endwith %}
 </ul>
-<br/>
 
+<hr> 
 {% endblock %}
 </div>
 

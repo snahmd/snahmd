@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{% trans "Search Results" %}{% endblock %}
+{% block title %}{% trans "Search Results" %}{% endblock %}
+{% block extra_head %}
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block breadcrumb_menu %}
+<li>
+    <a href="{% url "home" %}">{% trans "Home" %}</a>
+</li>
+<li class="active">{% trans "Search Results" %}</li>
+{% endblock %}
+
+{% block main %}
+
+
+
+<div id="search-results">
+{% for result in results.object_list %}
+{% with result.get_absolute_url as result_url %}
+    
+    <h1>
+        {{ forloop.counter0|add:results.start_index }})
+        {% if result_url %}
+            <a href="{{ result_url }}">{{ result }}</a>
+        {% else %}
+            {{ result }}
+        {% endif %}
+    </h1>
+    {% if result.description != result|stringformat:"s" %}
+        <h3 class="post-subtitle"><a href="{{ result_url }}">{{ result.description|truncatewords_html:20|safe }}</a></h3>
+    {% endif %}
+    {% if result_url %}
+        <a href="{{ result_url }}">{% trans "Read more..." %}</a>
+    {% endif %}
+    
+    <hr> 
+{% endwith %}
+{% endfor %}
+</div>
+
+<div class="row mt-3 justify-content-center">
+{% pagination_for results %}
+</div>
+{% endblock %}
