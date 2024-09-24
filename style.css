@@ -1,0 +1,450 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+
+  background-color: rgb(241, 234, 234);
+  /* diameter of the circle */
+  --d: 2px;
+
+  background: radial-gradient(
+      circle at var(--d) var(--d),
+      #ff030320 calc(var(--d) - 1px),
+      #00000000 var(--d)
+    )
+    0 0 / 20px 20px;
+}
+.section-header {
+  border: 5px solid purple;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo_img {
+  width: 103px;
+  height: 141px;
+  position: absolute;
+  top: 10px;
+  left: 50px;
+}
+
+.language-select {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  margin: 50px auto;
+  width: 200px;
+  text-align: center;
+}
+
+.language-select select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #555;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.language-select select:hover {
+  border-color: #007bff;
+}
+
+.language-select select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.header-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#particles-js {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  background-color: royalblue;
+}
+#particles-js .text {
+  border: 2px solid green;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  font-size: 45px;
+  transform: scale(2);
+  padding: 30px;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: rgba(65, 105, 225, 0.072);
+}
+#particles-js .text:before,
+#particles-js .text:after {
+  padding: 30px;
+  color: rgb(255, 255, 255);
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  top: 0;
+}
+#particles-js .text:before {
+  left: 2px;
+  text-shadow: -2px 0 red;
+  animation: glitch-1 2s linear infinite reverse;
+}
+#particles-js .text:after {
+  left: -2px;
+  text-shadow: -2px 0 blue;
+  animation: glitch-2 2s linear infinite reverse;
+}
+@keyframes glitch-1 {
+  0% {
+    clip: rect(132px, auto, 101px, 30px);
+  }
+
+  10% {
+    clip: rect(40px, auto, 66px, 30px);
+  }
+
+  20% {
+    clip: rect(137px, auto, 61px, 30px);
+  }
+
+  30% {
+    clip: rect(133px, auto, 74px, 30px);
+  }
+
+  40% {
+    clip: rect(59px, auto, 130px, 30px);
+  }
+
+  50% {
+    clip: rect(22px, auto, 67px, 30px);
+  }
+
+  60% {
+    clip: rect(10px, auto, 105px, 30px);
+  }
+
+  70% {
+    clip: rect(105px, auto, 13px, 30px);
+  }
+
+  80% {
+    clip: rect(66px, auto, 39px, 30px);
+  }
+
+  90% {
+    clip: rect(36px, auto, 128px, 30px);
+  }
+
+  100% {
+    clip: rect(14px, auto, 100px, 30px);
+  }
+}
+@keyframes glitch-2 {
+  0% {
+    clip: rect(129px, auto, 36px, 30px);
+  }
+
+  10% {
+    clip: rect(85px, auto, 66px, 30px);
+  }
+
+  20% {
+    clip: rect(148px, auto, 138px, 30px);
+  }
+
+  30% {
+    clip: rect(69px, auto, 54px, 30px);
+  }
+
+  40% {
+    clip: rect(146px, auto, 34px, 30px);
+  }
+
+  50% {
+    clip: rect(102px, auto, 80px, 30px);
+  }
+
+  60% {
+    clip: rect(106px, auto, 99px, 30px);
+  }
+
+  70% {
+    clip: rect(20px, auto, 78px, 30px);
+  }
+
+  80% {
+    clip: rect(78px, auto, 52px, 30px);
+  }
+
+  90% {
+    clip: rect(67px, auto, 70px, 30px);
+  }
+
+  100% {
+    clip: rect(83px, auto, 40px, 30px);
+  }
+}
+
+/* ---- reset ---- */
+
+canvas {
+  vertical-align: bottom;
+} /* ---- particles.js container ---- */
+#particles-js {
+  position: absolute;
+  /* border: 2px solid green; */
+  background-image: url("./ahmed.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+#typewriter {
+  /* border: 2px solid green; */
+  color: #0072ef;
+  font-weight: bold;
+}
+
+#cursor {
+  color: #0072ef;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+}
+
+#postit {
+  border: 2px solid green;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://www.101computing.net/wp/wp-content/uploads/post-it.jpg");
+}
+
+#message {
+  text-align: center;
+  padding: 70px 50px 50px 50px;
+  color: #c40808;
+  font-family: Trebuchet MS;
+  font-size: 20px;
+}
+
+.project-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  overflow: hidden;
+  background-image: radial-gradient(
+    circle at top left,
+    #950923 10%,
+    #000094 30%
+  );
+}
+
+.container {
+  width: 80%;
+}
+
+.swiper {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.swiper-slide {
+  position: relative;
+  width: 250px;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 1s;
+  user-select: none;
+}
+.swiper-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(130, 13, 13, 0.8),
+    rgba(39, 8, 92, 0.8)
+  );
+  mix-blend-mode: multiply;
+  z-index: 20;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0%;
+  transition: 1s;
+}
+.swiper-slide p {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  color: #fff;
+  padding: 8px;
+  background-color: #00009490;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 2px;
+  z-index: 2;
+  opacity: 0;
+  transform: rotate(360deg) scale(0);
+  transition: 0.8s;
+}
+
+.swiper-slide-active {
+  position: relative;
+  width: 250px;
+  transition: 1s;
+}
+
+.swiper-slide-active {
+  position: relative;
+  width: 500px;
+  transition: 1s;
+}
+.swiper-slide-active::after {
+  background: rgba(123, 123, 123, 0.4);
+}
+
+.swiper-slide-active img {
+  transform: scale(1.3);
+  object-position: 50% 0%;
+}
+
+.swiper-slide-active p {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: all 0.6s ease-in-out;
+}
+.swiper-pagination-bullet-active {
+  width: 32px;
+  background-color: #6f1223;
+  border-radius: 14px;
+}
+/* .swiper-slide {
+  position: relative;
+  width: 200px;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 1s;
+  user-select: none;
+}
+
+.swiper-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(130, 13, 13, 0.8),
+    rgba(39, 8, 92, 0.8)
+  );
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 1s;
+}
+
+.swiper-slide p {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 2px;
+  z-index: 2;
+  opacity: 0;
+  transform: rotate(360deg) scale(0);
+  transition: 0.8s;
+}
+
+.swiper-slide-active {
+  position: relative;
+  width: 400px;
+  transition: 1s;
+}
+
+.swiper-slide-active::after {
+  background: rgba(123, 123, 123, 0.4);
+}
+
+.swiper-slide-active img {
+  transform: scale(1.3);
+  object-position: 50% 0%;
+}
+
+.swiper-slide-active p {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: all 0.6s ease-in-out;
+}
+
+.swiper-pagination-bullet-active {
+  width: 32px;
+  background-color: #6f1223;
+  border-radius: 14px;
+} */
