@@ -266,13 +266,19 @@ canvas {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  height: 100vh;
   overflow: hidden;
   background-image: radial-gradient(
     circle at top left,
     #950923 10%,
     #000094 30%
   );
+}
+/* i want to in mobile screen 50 vh */
+@media (max-width: 768px) {
+  .project-container {
+    height: 60vh;
+  }
 }
 
 .container {
