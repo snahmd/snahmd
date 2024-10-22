@@ -211,6 +211,7 @@ selectLang.addEventListener("change", (e) => {
     code.innerHTML = "Kode";
     live.innerHTML = "Demo";
     phrases[1] = "Fullstack Entwickler";
+    contact.innerHTML = "Kontaktaufnahme";
   } else if (e.target.value == "tr") {
     slogan.innerHTML =
       "Programlama dilleri ve frameworkler kullandigimiz araclardir, fakat amac kullanici deneyiminin ne kadar iyi olduguyla alakalidir.";
@@ -219,6 +220,7 @@ selectLang.addEventListener("change", (e) => {
     code.innerHTML = "Kod";
     live.innerHTML = "Demo";
     phrases[1] = "Fullstack Gelistiriciyim";
+    contact.innerHTML = "İletişime Geçin";
   } else {
     slogan.innerHTML =
       "Programming languages and frameworks are the tools we use, but the goal is related to how good the user experience is.";
@@ -227,5 +229,6 @@ selectLang.addEventListener("change", (e) => {
     code.innerHTML = "Code";
     live.innerHTML = "Demo";
     phrases[1] = "Fullstack Developer";
+    contact.innerHTML = "Get In Touch";
   }
 });
